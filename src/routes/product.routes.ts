@@ -1,6 +1,6 @@
 // schemas
 import verifyShape from '../schemas/verifyShape.schema'
-import { RegisterSchema } from '../schemas/product.schema'
+import { RegisterSchema, UpdateSchema } from '../schemas/product.schema'
 
 // middlewares
 import validateTokenMiddleware from '../middlewares/validateToken.middleware'
@@ -28,6 +28,8 @@ productRouter.post(
   verifyExistenceRegisterMiddleware,
   registerProductController,
 )
+
+productRouter.patch('', verifyShape(UpdateSchema))
 
 productRouter.delete(
   '/:name',
